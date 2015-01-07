@@ -10,6 +10,8 @@
 
 #include"../../libs/ctp/ThostFtdcTraderApi.h"
 
+#include"order.h"
+
 class fillpolicy;
 
 class orderlist :public QObject
@@ -18,7 +20,7 @@ class orderlist :public QObject
     friend class fillpolicy;
 public:
     void init();
-    std::string new_order(const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size);//strategy call// new an order
+    std::string add_order(const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size);//strategy call// new an order
     void cancel_order(const std::string & ordername);
     void change_order(const std::string & ordername,const std::string & change_cancel,double changeto);//strategy call// change size price etc
     //还可加入查询order状态的函数

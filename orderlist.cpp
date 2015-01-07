@@ -7,8 +7,6 @@
 
 #include"../libs/ctp/ThostFtdcTraderApi.h"
 
-extern MainWindow * mw;
-
 using namespace std;
 
 void orderlist::init()

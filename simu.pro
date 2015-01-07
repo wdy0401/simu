@@ -16,11 +16,15 @@ SOURCES += main.cpp\
 		mainwindow.cpp \
     match_engine.cpp \
     orderlist.cpp \
-    fillpolicy.cpp
+    fillpolicy.cpp \
+    ../only_qt_ctp/tactic.cpp \
+    order.cpp
 
 HEADERS  += mainwindow.h \
     match_engine.h \
     orderlist.h \
-    fillpolicy.h
+    fillpolicy.h \
+    ../only_qt_ctp/tactic.h \
+    order.h
 
 FORMS    += mainwindow.ui

@@ -69,10 +69,10 @@ void match_engine::updatetacticbooks()//根据新的orderbooks来判断时候发
 {
 	//const orderlist & ol,const orderbook & ob
 }
-void match_engine::add_order(const std::string & symbol,const std::string & buysell, double price ,long size)
+void match_engine::add_order(const std::string & symbol,const std::string & buysell, const std::string & openclose, double price ,long size)
 {
-    std::cout<<symbol<<" "<<buysell<<" "<<price<<" "<<size<<std::endl;
-	this->_ol.neworder(symbol,buysell,price,size);
+    std::cout<<symbol<<" "<<buysell<<" "<<openclose<<" "<<price<<" "<<size<<std::endl;
+    this->_ol.add_order(symbol,buysell,openclose,price,size);
 }
 void match_engine::add_order(const string & orderstr)
 {
@@ -81,48 +81,3 @@ void match_engine::add_order(const string & orderstr)
 	add_order(_order_message.symbol(),buysell,_order_message.price(),_order_message.size());
 }
 
-void match_engine::fp_te_tactic_order_send_ack(const std::string & orderid)
-{
-	te.order_send_ack(orderid);
-	return;
-}
-
-void match_engine::fp_te_tactic_order_change_size_ack(const std::string & orderid, long size)
-{
-	te.order_change_size_ack(orderid,size);
-	return;
-}
-void match_engine::fp_te_tactic_order_change_price_ack(const std::string & orderid, double price)
-{
-	te.order_change_price_ack(orderid, price);
-	return;
-}
-
-void match_engine::fp_te_tactic_order_fill(const std::string & orderid,long fillsize)
-{
-	te.order_fill(orderid,fillsize);
-	return;
-}
-
-void match_engine::fp_te_tactic_order_change_size_rej(const std::string & orderid, long size)
-{
-	te.order_change_size_rej(orderid,size);
-	return;
-}
-
-void match_engine::fp_te_tactic_order_change_price_rej(const std::string & orderid, double price)
-{
-	te.order_change_price_rej(orderid,price);
-	return;
-}
-
-void match_engine::fp_te_tactic_order_change_size_done(const std::string & orderid, long size)
-{
-	te.order_change_size_done(orderid,size);
-	return;
-}
-void match_engine::fp_te_tactic_order_change_price_done(const std::string & orderid, double price)
-{
-	te.order_change_price_done(orderid,price);
-	return;
-}
