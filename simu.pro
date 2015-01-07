@@ -14,17 +14,24 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
 		mainwindow.cpp \
+    order.cpp \
+    fillpolicy.cpp \
     match_engine.cpp \
     orderlist.cpp \
-    fillpolicy.cpp \
-    ../only_qt_ctp/tactic.cpp \
-    order.cpp
+    datafeed.cpp \
+    orderbook.cpp \
+    tactic.cpp \
+    snapshot.cpp
 
 HEADERS  += mainwindow.h \
+    order.h \
+    fillpolicy.h \
     match_engine.h \
     orderlist.h \
-    fillpolicy.h \
-    ../only_qt_ctp/tactic.h \
-    order.h
+    datafeed.h \
+    orderbook.h \
+    tactic.h \
+    snapshot.h \
+    parameter.h
 
 FORMS    += mainwindow.ui
