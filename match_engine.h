@@ -3,14 +3,12 @@
 
 #include<string>
 #include<map>
-#include"orderbook.h"
 #include"orderlist.h"
-#include"order.h"
-#include"../wtimer/wtimer.h"
-#include"../fillpolicy/fillpolicy.h"
-#include"../datafeed/datafeed.h"
-#include"../../protobuf/order.pb.h"
+#include"../gpp_qt/wtimer/wtimer.h"
+#include"../gpp_qt/fillpolicy/fillpolicy.h"
+#include"../gpp_qt/datafeed/datafeed.h"
 
+#include<QObject>
 
 //修改此类以满足通用要求
 
@@ -41,8 +39,9 @@
 //信息流均通过trans_event进行
 
 
-class match_engine
+class match_engine:public QObject
 {
+    Q_OBJECT
 public:
 
     match_engine();

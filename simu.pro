@@ -15,10 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
 		mainwindow.cpp \
     match_engine.cpp \
-    orderlist.cpp
+    orderlist.cpp \
+    fillpolicy.cpp
 
 HEADERS  += mainwindow.h \
     match_engine.h \
-    orderlist.h
+    orderlist.h \
+    fillpolicy.h
 
 FORMS    += mainwindow.ui

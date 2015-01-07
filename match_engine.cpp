@@ -1,14 +1,11 @@
 ﻿#include<map>
 #include"match_engine.h"
-#include"../wtimer/wtimer.h"
-#include"../log_info/log_info.h"
-#include"../fillpolicy/fillpolicy.h"
-#include"../trans_event/trans_event.h"
-#include"protobuf/stdafx.h"
-#include"protobuf/quote.pb.h"
+#include"../gpp_qt//wtimer/wtimer.h"
+#include"../gpp_qt/log_info/log_info.h"
+#include"../gpp_qt/fillpolicy/fillpolicy.h"
+#include"../gpp_qt/trans_event/trans_event.h"
 
 using namespace std;
-using namespace QUOTE;
 
 extern log_info loginfo;
 extern trans_event te;

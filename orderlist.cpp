@@ -1,13 +1,11 @@
 ﻿#include"orderlist.h"
-
-#include"../../only_qt_ctp/mainwindow.h"
 #include<QMessageBox>
 
 #include<iostream>
 
-#include"../wfunction/wfunction.h"
+#include"../gpp_qt/wfunction/wfunction.h"
 
-#include"../../libs/ctp/ThostFtdcTraderApi.h"
+#include"../libs/ctp/ThostFtdcTraderApi.h"
 
 extern MainWindow * mw;
 
@@ -39,28 +37,7 @@ void orderlist::OnRtnOrder(CThostFtdcOrderField *p)
 {
     cerr << endl << "--->>> OnRtnOrder" <<endl;
     string mapid=wfunction::itos(p->FrontID)+"_"+wfunction::itos(p->SessionID)+"_"+p->OrderRef;
-/*
-    switch (p->OrderStatus)
-    {
-    ///全部成交
-    case THOST_FTDC_OST_AllTraded: orderid_op.erase(mapid); break;
-    ///部分成交还在队列中
-    case THOST_FTDC_OST_PartTradedQueueing:break;
-    ///部分成交不在队列中
-    case THOST_FTDC_OST_PartTradedNotQueueing: orderid_op.erase(mapid); break;
-    ///未成交还在队列中
-    case THOST_FTDC_OST_NoTradeQueueing: break;
-    ///未成交不在队列中
-    case THOST_FTDC_OST_NoTradeNotQueueing: orderid_op.erase(mapid); break;
-    ///撤单
-    case THOST_FTDC_OST_Canceled: orderid_op.erase(mapid); break;
-    ///未知， 表示 Thost已经接受用户 的委托指令，还没有 转发到交易所
-    case THOST_FTDC_OST_Unknown: orderid_op[mapid] = p; break;
-    ///尚未触发
-    case THOST_FTDC_OST_NotTouched: break;
 
-    }
-  */
     cerr << "map id\t" << mapid << endl;
     cerr << "FrontID\t" << p->FrontID << endl;
     cerr << "SessionID\t" << p->SessionID << endl;
