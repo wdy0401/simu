@@ -11,9 +11,7 @@
 #include"match_engine.h"
 #define ctp_order_manager match_engine
 #define CThostFtdcDepthMarketDataField snapshot
-
 #else
-
 #include"../libs/ctp/ThostFtdcMdApi.h"
 #include"ctp_order_manager.h"
 #endif
@@ -27,7 +25,11 @@ class tactic: public QObject
 {
     Q_OBJECT
 public:
-    void set_ctp_order_manager(ctp_order_manager * p);
+#ifdef SIMU
+    void set_match_engine(ctp_order_manager * p){om=p;}
+#else
+    void set_ctp_order_manager(ctp_order_manager * p){om=p;}
+#endif
     void init();
 
 public slots:

@@ -20,8 +20,8 @@ SOURCES += main.cpp\
     orderlist.cpp \
     datafeed.cpp \
     orderbook.cpp \
-    tactic.cpp \
-    snapshot.cpp
+	tactic.cpp \
+	snapshot.cpp
 
 HEADERS  += mainwindow.h \
     order.h \
@@ -30,8 +30,8 @@ HEADERS  += mainwindow.h \
     orderlist.h \
     datafeed.h \
     orderbook.h \
-    tactic.h \
-    snapshot.h \
+	tactic.h \
+	snapshot.h \
     parameter.h
 
 FORMS    += mainwindow.ui

@@ -9,10 +9,6 @@ void tactic::init()
     lasttradeprice=0;
     lasttradeprice_1=0;
 }
-void tactic::set_ctp_order_manager(ctp_order_manager * p)
-{
-    om=p;
-}
 void tactic::book(const CThostFtdcDepthMarketDataField *p){}
 //{
 ////    cerr <<endl << "Tactic Book" << endl;
