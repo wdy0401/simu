@@ -9,6 +9,7 @@
 #ifdef SIMU
 #include"snapshot.h"
 #include"match_engine.h"
+#include"../gpp_qt/wtimer/wtimer.h"
 #define ctp_order_manager match_engine
 #define CThostFtdcDepthMarketDataField snapshot
 #else
@@ -31,6 +32,7 @@ public:
     void set_ctp_order_manager(ctp_order_manager * p){om=p;}
 #endif
     void init();
+    void set_timer(wtimer * p){timer=p;}
 
 public slots:
     virtual void book(const CThostFtdcDepthMarketDataField *p);
@@ -45,6 +47,7 @@ private:
     double lasttradeprice;
     double lasttradeprice_1;
     ctp_order_manager * om;
+    wtimer * timer;
 };
 
 #endif // TACTIC_H

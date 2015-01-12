@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include<string>
+#include"../gpp_qt/wtimer/wtimer.h"
 class orderbook;
 class snapshot;
 class match_engine : public QObject
@@ -14,6 +15,7 @@ public:
 
     void set_book(orderbook * p){ob=p;}
     void set_snapshot(snapshot * p){ss=p;}
+    void set_timer(wtimer * p){timer=p;}
 
 signals:
     void send_quote_book();
@@ -27,6 +29,7 @@ public slots:
 private:
     snapshot * ss;
     orderbook * ob;
+    wtimer * timer;
 };
 
 #endif // MATCH_ENGINE_H

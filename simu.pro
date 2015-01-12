@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     datafeed.cpp \
     orderbook.cpp \
 	tactic.cpp \
-	snapshot.cpp
+	snapshot.cpp \
+    ../gpp_qt/wfunction/wfunction.cpp
 
 HEADERS  += mainwindow.h \
     order.h \
@@ -32,6 +33,7 @@ HEADERS  += mainwindow.h \
     orderbook.h \
 	tactic.h \
 	snapshot.h \
-    parameter.h
+    parameter.h \
+    ../gpp_qt/wfunction/wfunction.h
 
 FORMS    += mainwindow.ui
