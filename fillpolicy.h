@@ -23,7 +23,8 @@ signals:
     void rej(const std::string & ordername,const std::string & type,const std::string & info);
     void fill(const std::string & ordername,const std::string symbol,double price, long size);
 public slots:
-    void rec_quote();
+    void rec_quote(const std::string & symbol,const std::string & bidask,long level,double price,long size);
+    void rec_new_order(const std::string ordername,const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size);
 
 private:
     orderbook * ob;

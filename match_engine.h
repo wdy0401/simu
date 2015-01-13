@@ -13,22 +13,19 @@ public:
     explicit match_engine(QObject *parent = 0);
     std::string new_order(const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size);
 
-    void set_book(orderbook * p){ob=p;}
     void set_snapshot(snapshot * p){ss=p;}
     void set_timer(wtimer * p){timer=p;}
 
 signals:
-    void send_quote_book();
-    void send_quote_fp();
-    void send_quote_tactic();
-    void send_add_order();
+    void send_quote_fp(const std::string & symbol,const std::string & bidask,long level,double price,long size);
+    void send_quote_tactic(const std::string & symbol,const std::string & bidask,long level,double price,long size);
+    void send_new_order(const std::string ordername,const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size);
 
 public slots:
-    void rec_quote();
+    void rec_quote(const std::string & symbol,const std::string & bidask,long level,double price,long size);
 
 private:
     snapshot * ss;
-    orderbook * ob;
     wtimer * timer;
 };
 

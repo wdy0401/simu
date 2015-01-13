@@ -65,6 +65,7 @@ void datafeed::sendmessage(const string & msg)
     long	level=atol((++iter)->c_str());
     double	price=atof((++iter)->c_str());
     long	size=atol((++iter)->c_str());
+    cout<<symbol<<"\t"<<bidask<<"\t"<<level<<"\t"<<price<<"\t"<<size<<endl;
     emit send_quote(symbol,bidask,level,price,size);
 }
 
@@ -151,7 +152,8 @@ void datafeed::feedcache(const string & filename)
 
         if(emptyline==2)
         {
-            cerr<<"File "<<filename<<" loaded"<<endl;
+            string tstr="\nFile\t"+filename+"\tloaded\n";
+            cerr<<tstr<<endl;
             _filenames.remove(filename);
             break;
         }
