@@ -2,19 +2,19 @@
 #define FILLPOLICY_H
 
 #include <QObject>
-
+#include <list>
+#include"order.h"
 #include"../gpp_qt/wtimer/wtimer.h"
 
 class orderbook;
-class orderlist;
 class fillpolicy : public QObject
 {
     Q_OBJECT
 public:
     explicit fillpolicy(QObject *parent = 0);
 
+    void init();
     void set_book(orderbook * p){ob=p;}
-    void set_orderlist(orderlist * p){ol=p;}
     void set_timer(wtimer * p){timer=p;}
 
 signals:
@@ -28,7 +28,7 @@ public slots:
 
 private:
     orderbook * ob;
-    orderlist * ol;
+    std::list<order> * ol;
     wtimer * timer;
 };
 

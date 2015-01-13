@@ -1,18 +1,19 @@
 #ifndef ORDER_H
 #define ORDER_H
+#include<string>
 
-#include <QObject>
-
-class order : public QObject
+struct order
 {
-    Q_OBJECT
-public:
-    explicit order(QObject *parent = 0);
+    std::string ordername;
 
-signals:
+    std::string symbol;
+    std::string openclose;
+    std::string buysell;
+    double price;
+    long size;
 
-public slots:
-
+    long size_to_fill;
+    long size_not_filled;
 };
 
 #endif // ORDER_H

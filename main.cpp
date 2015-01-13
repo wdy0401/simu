@@ -4,7 +4,6 @@
 #include"datafeed.h"
 #include"fillpolicy.h"
 #include"orderbook.h"
-#include"orderlist.h"
 #include"parameter.h"
 #include"match_engine.h"
 #include"snapshot.h"
@@ -22,7 +21,6 @@ int main(int argc, char *argv[])
     datafeed * df =new datafeed;
     fillpolicy * fp =new fillpolicy;
     orderbook * ob = new orderbook;
-    orderlist * ol =new orderlist;
     match_engine * me =new match_engine;
     snapshot * ss=new snapshot;
     tactic * tc =new tactic;
@@ -35,7 +33,6 @@ int main(int argc, char *argv[])
     df->set_timer(timer);
 
     fp->set_book(ob);
-    fp->set_orderlist(ol);
     fp->set_timer(timer);
 
     me->set_snapshot(ss);
@@ -58,6 +55,7 @@ int main(int argc, char *argv[])
 
 
 
+    fp->init();
     tc->init();
 
     df->setfile("d:/tmp/quote.csv");

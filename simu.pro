@@ -14,10 +14,8 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
 		mainwindow.cpp \
-    order.cpp \
     fillpolicy.cpp \
     match_engine.cpp \
-    orderlist.cpp \
     datafeed.cpp \
     orderbook.cpp \
 	tactic.cpp \
@@ -28,7 +26,6 @@ HEADERS  += mainwindow.h \
     order.h \
     fillpolicy.h \
     match_engine.h \
-    orderlist.h \
     datafeed.h \
     orderbook.h \
 	tactic.h \
