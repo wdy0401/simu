@@ -3,7 +3,6 @@
 
 #include"datafeed.h"
 #include"fillpolicy.h"
-#include"orderbook.h"
 #include"parameter.h"
 #include"match_engine.h"
 #include"snapshot.h"
@@ -20,7 +19,6 @@ int main(int argc, char *argv[])
 
     datafeed * df =new datafeed;
     fillpolicy * fp =new fillpolicy;
-    orderbook * ob = new orderbook;
     match_engine * me =new match_engine;
     snapshot * ss=new snapshot;
     tactic * tc =new tactic;
@@ -32,7 +30,6 @@ int main(int argc, char *argv[])
 
     df->set_timer(timer);
 
-    fp->set_book(ob);
     fp->set_timer(timer);
 
     me->set_snapshot(ss);
@@ -52,7 +49,6 @@ int main(int argc, char *argv[])
     QObject::connect(df,&datafeed::send_quote,&w,&MainWindow::show_quote);
 
     QObject::connect(me,&match_engine::send_new_order,fp,&fillpolicy::rec_new_order);
-
 
 
     fp->init();

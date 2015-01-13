@@ -13,7 +13,7 @@ struct order
     long size;
 
     long size_to_fill;
-    long size_not_filled;
+    long size_filled;
 };
 
 #endif // ORDER_H

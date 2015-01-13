@@ -3,10 +3,11 @@
 
 #include <QObject>
 #include <list>
+#include<map>
 #include"order.h"
+#include"orderbook.h"
 #include"../gpp_qt/wtimer/wtimer.h"
 
-class orderbook;
 class fillpolicy : public QObject
 {
     Q_OBJECT
@@ -14,7 +15,7 @@ public:
     explicit fillpolicy(QObject *parent = 0);
 
     void init();
-    void set_book(orderbook * p){ob=p;}
+    void updateorderlist(const std::string & symbol);
     void set_timer(wtimer * p){timer=p;}
 
 signals:
@@ -27,8 +28,10 @@ public slots:
     void rec_new_order(const std::string ordername,const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size);
 
 private:
-    orderbook * ob;
-    std::list<order> * ol;
+    std::map<std::string,orderbook * > ob;
+    std::map <std::string,order *> _pend_order;
+    std::map <std::string,order *> _run_order;
+    std::map <std::string,order *> _done_order;
     wtimer * timer;
 };
 
