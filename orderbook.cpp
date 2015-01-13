@@ -19,29 +19,29 @@ void orderbook::updateorderbook(const std::string &bidask, long level, double pr
 	//更新nbbo
 	if (level==1)
 	{
-		if (bidask=="bid")
+        if (bidask=="BID")
 		{
 			_bidprice=price;
 			_bidsize=size;
 		}
-		if (bidask=="ask")
+        if (bidask=="ASK")
 		{
 			_askprice=price;
 			_asksize=size;
 		}
 	}
 	//更新book
-	if(bidask=="bid")
+    if(bidask=="BID")
 	{
 		_bidlevelprice[level]=price;
 		_bidlevelsize[level]=size;
 	}
-	if(bidask=="ask")
+    if(bidask=="ASK")
 	{
 		_asklevelprice[level]=price;
 		_asklevelsize[level]=size;
 	}
-	if(bidask=="fill")
+    if(bidask=="FILL")
 	{
 		_lastfillsize=_fillsize;
 		_fillsize=size;
