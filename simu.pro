@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     orderbook.cpp \
 	tactic.cpp \
 	snapshot.cpp \
-    ../gpp_qt/wfunction/wfunction.cpp
+	../gpp_qt/wfunction/wfunction.cpp \
+    cmd_line.cpp
 
 HEADERS  += mainwindow.h \
     order.h \
@@ -31,6 +32,7 @@ HEADERS  += mainwindow.h \
 	tactic.h \
 	snapshot.h \
     parameter.h \
-    ../gpp_qt/wfunction/wfunction.h
+	../gpp_qt/wfunction/wfunction.h \
+    cmd_line.h
 
 FORMS    += mainwindow.ui
