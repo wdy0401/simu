@@ -21,7 +21,8 @@ SOURCES += main.cpp\
 	tactic.cpp \
 	snapshot.cpp \
 	../gpp_qt/wfunction/wfunction.cpp \
-    cmd_line.cpp
+    ../gpp_qt/cmd_line/cmd_line.cpp \
+    ../gpp_qt/log_info/log_info.cpp
 
 HEADERS  += mainwindow.h \
     order.h \
@@ -33,6 +34,7 @@ HEADERS  += mainwindow.h \
 	snapshot.h \
     parameter.h \
 	../gpp_qt/wfunction/wfunction.h \
-    cmd_line.h
+    ../gpp_qt/cmd_line/cmd_line.h \
+    ../gpp_qt/log_info/log_info.h
 
 FORMS    += mainwindow.ui

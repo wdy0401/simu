@@ -9,13 +9,16 @@
 #include"tactic.h"
 
 #include"../gpp_qt/wtimer/wtimer.h"
+#include"../gpp_qt/cmd_line/cmd_line.h"
+#include"../gpp_qt/log_info/log_info.h"
 
 int main(int argc, char *argv[])
 {
-
+    cmd_line * cl=new cmd_line(argc,argv);
 
     datafeed * df =new datafeed;
     fillpolicy * fp =new fillpolicy;
+    log_info * lf = new log_info;
     match_engine * me =new match_engine;
     snapshot * ss=new snapshot;
     tactic * tc =new tactic;
@@ -28,6 +31,8 @@ int main(int argc, char *argv[])
     df->set_timer(timer);
 
     fp->set_timer(timer);
+
+    lf->set_timer(timer);
 
     me->set_snapshot(ss);
     me->set_timer(timer);
@@ -53,10 +58,16 @@ int main(int argc, char *argv[])
     QObject::connect(fp,&fillpolicy::fill,&w,&MainWindow::show_fill);
 
     fp->init();
+    lf->init();
     tc->init();
 
-    df->setfile("d:/tmp/quote_IF.csv");
+    df->setfile(cl->get_para("quote_file"));
     df->run();
 
     return a.exec();
 }
+
+//mkdir
+//set recordfile
+//signal slot on log_info
+//写个logs？ QOBJECT 包含几个log_info 接收所有log 转换成string 然后放到各个log_info中
