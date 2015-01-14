@@ -12,10 +12,7 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.set_qa(&a);
-    w.show();
+
 
     datafeed * df =new datafeed;
     fillpolicy * fp =new fillpolicy;
@@ -45,16 +42,20 @@ int main(int argc, char *argv[])
     QObject::connect(fp,&fillpolicy::done,tc,&tactic::done);
     QObject::connect(me,&match_engine::send_quote_fp,fp,&fillpolicy::rec_quote);
     QObject::connect(me,&match_engine::send_quote_tactic,tc,&tactic::quote);
-
-    QObject::connect(df,&datafeed::send_quote,&w,&MainWindow::show_quote);
-
     QObject::connect(me,&match_engine::send_new_order,fp,&fillpolicy::rec_new_order);
 
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.set_qa(&a);
+    w.show();
+    QObject::connect(df,&datafeed::send_quote,&w,&MainWindow::show_quote);
+    QObject::connect(me,&match_engine::send_new_order,&w,&MainWindow::show_order);
+    QObject::connect(fp,&fillpolicy::fill,&w,&MainWindow::show_fill);
 
     fp->init();
     tc->init();
 
-    df->setfile("d:/tmp/quote.csv");
+    df->setfile("d:/tmp/quote_IF.csv");
     df->run();
 
     return a.exec();

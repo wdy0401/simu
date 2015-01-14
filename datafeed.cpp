@@ -54,7 +54,7 @@ void datafeed::checkfilecache()//开始merge时，检查是否有空cache，如�
 }
 void datafeed::sendmessage(const string & msg)
 {
-    cout<<msg<<endl;
+//    cout<<msg<<endl;
     list<string> lists=wfunction::splitstring(msg);
     list<string>::iterator iter=lists.begin();
 
@@ -65,7 +65,7 @@ void datafeed::sendmessage(const string & msg)
     long	level=atol((++iter)->c_str());
     double	price=atof((++iter)->c_str());
     long	size=atol((++iter)->c_str());
-    cout<<symbol<<"\t"<<bidask<<"\t"<<level<<"\t"<<price<<"\t"<<size<<endl;
+//    cout<<symbol<<"\t"<<bidask<<"\t"<<level<<"\t"<<price<<"\t"<<size<<endl;
     emit send_quote(symbol,bidask,level,price,size);
 }
 

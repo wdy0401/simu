@@ -23,7 +23,7 @@ void fillpolicy::rec_quote(const std::string & symbol,const std::string & bidask
         ob[symbol]=tob;
         tob->updateorderbook(bidask,level,price,size);
     }
-    updateorderlist(symbol);
+    check_fill(symbol);
 }
 
 void fillpolicy::rec_new_order(const std::string ordername,const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size)
@@ -40,7 +40,7 @@ void fillpolicy::rec_new_order(const std::string ordername,const std::string sym
     tmporder->size_filled=0;
     _pend_order[ordername]=tmporder;
 }
-void fillpolicy::updateorderlist(const string & symbol)
+void fillpolicy::check_fill(const string & symbol)
 {
     //消息fill					检测run上有哪些order可成交 成交之
     //转区fill					将成交完成的移入done list
@@ -50,18 +50,23 @@ void fillpolicy::updateorderlist(const string & symbol)
     //消息fill
     //转区fill
 
-    qDebug()<<"updateorderlsit 111\n";
-    orderbook * now_ob=ob[symbol];
+   orderbook * now_ob=ob[symbol];
     if(now_ob->init_done()==false)
     {
         return;
     }
-    qDebug()<<"updateorderlsit 222\n";
     for(map<string,order *>::iterator iter=_run_order.begin(); iter!=_run_order.end();)
     {
-        if((iter->second->price>=now_ob->getaskprice() && iter->second->buysell=="buy") || (iter->second->price<=now_ob->getbidprice() &&iter->second->buysell=="buy"))
+        qDebug()<<"orderprice"                        <<"\t"<<iter->second->price                      <<"\t"<< iter->second->buysell.c_str()                          <<"\t"<<now_ob->getaskprice()                        <<"\t"<< now_ob->getbidprice()                        <<endl;
+        if(iter->second->price>=now_ob->getaskprice() && iter->second->buysell=="BUY")
         {
-            emit fill(iter->first,iter->second->ordername,iter->second->price,iter->second->size_to_fill);
+            emit fill(iter->first,symbol,now_ob->getaskprice(),iter->second->size_to_fill);
+            _done_order[iter->first]=iter->second;
+            _run_order.erase(iter++);
+        }
+        else if(iter->second->price<=now_ob->getbidprice() &&iter->second->buysell=="SELL")
+        {
+            emit fill(iter->first,symbol,now_ob->getbidprice(),iter->second->size_to_fill);
             _done_order[iter->first]=iter->second;
             _run_order.erase(iter++);
         }

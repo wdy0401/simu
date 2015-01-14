@@ -15,7 +15,7 @@ void tactic::book(const CThostFtdcDepthMarketDataField *p){if(p!=nullptr){;}}
 //}
 void tactic::quote(const std::string & symbol, const std::string & ba, long level, double price, long quotesize)
 {
-    cout <<"now ordersize\t"<<ordersize<< "\tnow price\t " <<price << "\tlast trade price\t" << lasttradeprice <<endl;
+//    cout <<"now ordersize\t"<<ordersize<< "\tnow price\t " <<price << "\tlast trade price\t" << lasttradeprice <<endl;
     if(ba.size()>0 && level>0 && price>0 && quotesize>0){}
     if(symbol=="IF1501")
     {

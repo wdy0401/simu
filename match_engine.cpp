@@ -3,16 +3,20 @@
 #include"fillpolicy.h"
 #include"tactic.h"
 
+#include"../gpp_qt/wfunction/wfunction.h"
+
 using namespace std;
 match_engine::match_engine(QObject *parent) :
     QObject(parent)
 {
+    order_count=0;
 }
 
 
 std::string match_engine::new_order(const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size)
 {
-    string ordername="";
+    order_count++;
+    string ordername=symbol+"_"+buysell+"_"+openclose+"_"+wfunction::ftos(price)+"_"+wfunction::itos(size)+"_"+wfunction::ftos(order_count);
     emit send_new_order(ordername,symbol,buysell,openclose,price,size);
     return "";
 }

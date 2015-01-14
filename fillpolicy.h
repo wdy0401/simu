@@ -15,7 +15,7 @@ public:
     explicit fillpolicy(QObject *parent = 0);
 
     void init();
-    void updateorderlist(const std::string & symbol);
+    void check_fill(const std::string & symbol);
     void set_timer(wtimer * p){timer=p;}
 
 signals:

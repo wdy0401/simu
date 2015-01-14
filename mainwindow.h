@@ -18,6 +18,8 @@ public:
     void set_qa(QApplication * p){qa=p;}
 public slots:
     void show_quote(const std::string & symbol,const std::string & bidask,long level,double price,long size);
+    void show_order(const std::string ordername,const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size);
+    void show_fill(const std::string & ordername,const std::string symbol,double price, long size);
 private:
     Ui::MainWindow *ui;
     QApplication * qa;

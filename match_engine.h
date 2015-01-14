@@ -27,6 +27,7 @@ public slots:
 private:
     snapshot * ss;
     wtimer * timer;
+    long order_count;
 };
 
 #endif // MATCH_ENGINE_H
