@@ -22,7 +22,8 @@ SOURCES += main.cpp\
 	snapshot.cpp \
 	../gpp_qt/wfunction/wfunction.cpp \
     ../gpp_qt/cmd_line/cmd_line.cpp \
-    ../gpp_qt/log_info/log_info.cpp
+    ../gpp_qt/log_info/log_info.cpp \
+    ../gpp_qt/log_info/logs.cpp
 
 HEADERS  += mainwindow.h \
     order.h \
@@ -35,6 +36,7 @@ HEADERS  += mainwindow.h \
     parameter.h \
 	../gpp_qt/wfunction/wfunction.h \
     ../gpp_qt/cmd_line/cmd_line.h \
-    ../gpp_qt/log_info/log_info.h
+    ../gpp_qt/log_info/log_info.h \
+    ../gpp_qt/log_info/logs.h
 
 FORMS    += mainwindow.ui
