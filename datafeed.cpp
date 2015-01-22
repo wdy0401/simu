@@ -1,10 +1,13 @@
 ﻿#include "datafeed.h"
+
 #include"../gpp_qt/wfunction/wfunction.h"
 
 #include<fstream>
 #include<iostream>
 #include<string>
 #include<list>
+
+#include<QDebug>
 
 datafeed::datafeed(QObject *parent) :
     QObject(parent)
@@ -119,7 +122,7 @@ void datafeed::feedcache(const string & filename)
         infile->open(filename.c_str());
         if(! infile->is_open()) //检测文件存在性
         {
-            cerr << "Cannot openfile " << filename.c_str() << endl;
+            qDebug() << "Cannot openfile " << filename.c_str() << endl;
         }
         _filehandle[filename]=infile;
     }
@@ -153,7 +156,7 @@ void datafeed::feedcache(const string & filename)
         if(emptyline==2)
         {
             string tstr="\nFile\t"+filename+"\tloaded\n";
-            cerr<<tstr<<endl;
+            qDebug()<<tstr.c_str()<<endl;
             _filenames.remove(filename);
             break;
         }

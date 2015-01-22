@@ -32,10 +32,10 @@ void MainWindow::show_order(const std::string ordername,const std::string symbol
     qa->processEvents();
 }
 
-void MainWindow::show_fill(const std::string & ordername,const std::string symbol,double price, long size)
+void MainWindow::show_fill(const std::string & ordername,const std::string symbol,const std::string buysell,double price, long size)
 {
     std::string tmpstr;
-    tmpstr=ordername+"    \t"+symbol+"\t"+wfunction::ftos(price)+"\t"+wfunction::itos(size);
+    tmpstr=ordername+"    \t"+symbol+"\t"+buysell+"\t"+wfunction::ftos(price)+"\t"+wfunction::itos(size);
     this->ui->textBrowser_4->append(QString::fromStdString(tmpstr));
     qa->processEvents();
 }

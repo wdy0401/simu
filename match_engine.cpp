@@ -12,7 +12,6 @@ match_engine::match_engine(QObject *parent) :
     order_count=0;
 }
 
-
 std::string match_engine::new_order(const std::string symbol,const std::string buysell, const std::string & openclose ,double price,long size)
 {
     order_count++;

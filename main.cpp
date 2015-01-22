@@ -10,7 +10,7 @@
 
 #include"../gpp_qt/wtimer/wtimer.h"
 #include"../gpp_qt/cmd_line/cmd_line.h"
-#include"../gpp_qt/log_info/log_info.h"
+#include"../gpp_qt/log_info/logs.h"
 
 int main(int argc, char *argv[])
 {
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     datafeed * df =new datafeed;
     fillpolicy * fp =new fillpolicy;
-    log_info * lf = new log_info;
+    logs * ls = new logs;
     match_engine * me =new match_engine;
     snapshot * ss=new snapshot;
     tactic * tc =new tactic;
@@ -32,7 +32,8 @@ int main(int argc, char *argv[])
 
     fp->set_timer(timer);
 
-    lf->set_timer(timer);
+    ls->set_timer(timer);
+    ls->set_dir(cl->get_para("dir"));
 
     me->set_snapshot(ss);
     me->set_timer(timer);
@@ -49,22 +50,34 @@ int main(int argc, char *argv[])
     QObject::connect(me,&match_engine::send_quote_tactic,tc,&tactic::quote);
     QObject::connect(me,&match_engine::send_new_order,fp,&fillpolicy::rec_new_order);
 
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.set_qa(&a);
-    w.show();
-    QObject::connect(df,&datafeed::send_quote,&w,&MainWindow::show_quote);
-    QObject::connect(me,&match_engine::send_new_order,&w,&MainWindow::show_order);
-    QObject::connect(fp,&fillpolicy::fill,&w,&MainWindow::show_fill);
+    if(cl->has_para("gui"))
+    {
+        QApplication a(argc, argv);
+        MainWindow w;
+        w.set_qa(&a);
+        w.show();
+        QObject::connect(df,&datafeed::send_quote,&w,&MainWindow::show_quote);
+        QObject::connect(me,&match_engine::send_new_order,&w,&MainWindow::show_order);
+        QObject::connect(fp,&fillpolicy::fill,&w,&MainWindow::show_fill);
 
-    fp->init();
-    lf->init();
-    tc->init();
+        fp->init();
+        //ls->init();//尚待connect
+        tc->init();
 
-    df->setfile(cl->get_para("quote_file"));
-    df->run();
+        df->setfile(cl->get_para("quote_file"));
+        df->run();
+        return a.exec();
+    }
+    else
+    {
+        fp->init();
+        //ls->init();//尚待connect
+        tc->init();
 
-    return a.exec();
+        df->setfile(cl->get_para("quote_file"));
+        df->run();
+        return 0;
+    }
 }
 
 //mkdir

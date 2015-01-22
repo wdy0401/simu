@@ -60,13 +60,13 @@ void fillpolicy::check_fill(const string & symbol)
         qDebug()<<"orderprice"                        <<"\t"<<iter->second->price                      <<"\t"<< iter->second->buysell.c_str()                          <<"\t"<<now_ob->getaskprice()                        <<"\t"<< now_ob->getbidprice()                        <<endl;
         if(iter->second->price>=now_ob->getaskprice() && iter->second->buysell=="BUY")
         {
-            emit fill(iter->first,symbol,now_ob->getaskprice(),iter->second->size_to_fill);
+            emit fill(iter->first,symbol,"BUY",now_ob->getaskprice(),iter->second->size_to_fill);
             _done_order[iter->first]=iter->second;
             _run_order.erase(iter++);
         }
         else if(iter->second->price<=now_ob->getbidprice() &&iter->second->buysell=="SELL")
         {
-            emit fill(iter->first,symbol,now_ob->getbidprice(),iter->second->size_to_fill);
+            emit fill(iter->first,symbol,"SELL",now_ob->getbidprice(),iter->second->size_to_fill);
             _done_order[iter->first]=iter->second;
             _run_order.erase(iter++);
         }
