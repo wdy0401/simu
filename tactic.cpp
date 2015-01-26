@@ -1,10 +1,14 @@
 #include "tactic.h"
+#ifndef SIMU
+#include"ctp_order_manager.h"
+#endif
 #include<iostream>
 #include<QDebug>
 using namespace std;
 
 void tactic::init()
 {
+    _pause=false;
     ordersize=0;
     ordersize_1=0;
     lasttradeprice=0;
@@ -16,12 +20,15 @@ void tactic::book(const CThostFtdcDepthMarketDataField *p){if(p!=nullptr){;}}
 //}
 void tactic::quote(const std::string & symbol, const std::string & ba, long level, double price, long quotesize)
 {
-//    cout <<"now ordersize\t"<<ordersize<< "\tnow price\t " <<price << "\tlast trade price\t" << lasttradeprice <<endl;
+    if(_pause==true)
+    {
+        return;
+    }
     if(ba.size()>0 && level>0 && price>0 && quotesize>0){}
 #ifdef SIMU
     if(1)
 #else
-    if(symbol=="IF1501")
+    if(symbol=="IF1503")
 #endif
     {
         if(lasttradeprice==0)
@@ -74,7 +81,7 @@ void tactic::quote(const std::string & symbol, const std::string & ba, long leve
             }
         }
     }
-    if(symbol=="IF1503")
+    if(symbol=="IF1502")
     {
         if(lasttradeprice_1==0)
         {
@@ -86,13 +93,13 @@ void tactic::quote(const std::string & symbol, const std::string & ba, long leve
             {
                 om->new_order(symbol,"BUY","OPEN",price+PRICESTEP,ORDERSZ);
                 lasttradeprice_1=price;
-                ordersize_1--;
+                ordersize_1++;
             }
             if(price-lasttradeprice_1<-1*LIMITSTEP)
             {
                 om->new_order(symbol,"SELL","OPEN",price-PRICESTEP,ORDERSZ);
                 lasttradeprice_1=price;
-                ordersize_1++;
+                ordersize_1--;
             }
         }
         else if(ordersize_1>0)
