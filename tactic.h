@@ -33,7 +33,8 @@ public:
     void init();
     void send_order();
     void set_timer(wtimer * p){timer=p;}
-
+signals:
+    virtual void tactic_info(const std::string & info);
 public slots:
     virtual void book(const CThostFtdcDepthMarketDataField *p);
     virtual void quote(const std::string & symbol, const std::string & ba, long level, double price, long quotesize);

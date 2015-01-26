@@ -49,6 +49,9 @@ int main(int argc, char *argv[])
     QObject::connect(me,&match_engine::send_quote_fp,fp,&fillpolicy::rec_quote);
     QObject::connect(me,&match_engine::send_quote_tactic,tc,&tactic::quote);
     QObject::connect(me,&match_engine::send_new_order,fp,&fillpolicy::rec_new_order);
+    QObject::connect(fp,&fillpolicy::fill,ls,&logs::fill);
+    QObject::connect(tc,&tactic::tactic_info,ls,&logs::tactic_info);
+
 
     if(cl->has_para("gui"))
     {
@@ -61,7 +64,7 @@ int main(int argc, char *argv[])
         QObject::connect(fp,&fillpolicy::fill,&w,&MainWindow::show_fill);
 
         fp->init();
-        //ls->init();//尚待connect
+        ls->init();
         tc->init();
 
         df->setfile(cl->get_para("quote_file"));
@@ -71,7 +74,7 @@ int main(int argc, char *argv[])
     else
     {
         fp->init();
-        //ls->init();//尚待connect
+        ls->init();
         tc->init();
 
         df->setfile(cl->get_para("quote_file"));
