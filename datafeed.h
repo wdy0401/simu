@@ -13,7 +13,7 @@
 //这里仍旧涉及到标准数据的表示方式问题，如标准化则可以利用更有效的方式来进行比较
 
 
-#define FILE_RECORD_BUFFER 10
+#define FILE_RECORD_BUFFER 10000
 
 class datafeed : public QObject
 {
