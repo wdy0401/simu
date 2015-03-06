@@ -83,7 +83,3 @@ int main(int argc, char *argv[])
     }
 }
 
-//mkdir
-//set recordfile
-//signal slot on log_info
-//写个logs？ QOBJECT 包含几个log_info 接收所有log 转换成string 然后放到各个log_info中
